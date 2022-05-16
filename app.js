@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Neweet Trivia API!");
 });
 
-const playRoutes = require("./routes/playerRoutes");
+const playerRoutes = require("./routes/players");
 app.use("/api/players", playerRoutes);
 
 // 404 page if user navigatesto non-existent endpoint
