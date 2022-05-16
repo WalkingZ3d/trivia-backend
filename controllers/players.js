@@ -1,6 +1,6 @@
 const Player = require("../models/Player");
 
-async function index(req, res) {
+async function getAll(req, res) {
   try {
     const players = await Player.all;
     res.status(200).json(players);
@@ -46,4 +46,4 @@ async function remove(req, res) {
   }
 }
 
-module.exports = { index, create, show, update, remove };
+module.exports = { getAll, create, show, update, remove };
