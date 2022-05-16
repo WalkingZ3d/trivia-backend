@@ -36,9 +36,19 @@ app.get('/', (req, res) => {
 app.use('/api/hello', helloRoutes);
 app.use('/api', rootRoute); // Routes 
 
-//all mongoDB requests start here
-app.get("/records", allRecords);
-//all mongoDB requests end here
+
+//MONGODB API REQUEST
+app.get("/records", allRecords); //find all the records
+//app.get("/records/winner/:id", winnerRoutes) //find the record based on the winner
+//app.get("/record/:id", playerRoutes) //find all the record of the player
+
+//MONGODB CREATE NEW GAME RECORDS
+app.post("/saveRecord", async (req, res) => {
+    const record = req.body;
+    const newRecord = new RecordModel(record);
+    await newRecord.save();
+});
+
 
 // 404 page if user naviagtes to endpoint that does not exist
 app.use((req, res) => {
