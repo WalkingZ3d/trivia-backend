@@ -45,8 +45,10 @@ app.get("/records", allRecords); //find all the records
 //MONGODB CREATE NEW GAME RECORDS
 app.post("/saveRecord", async (req, res) => {
     const record = req.body;
-    const newRecord = new RecordModel(record);
+    const newRecord = new RecordModel.RecordModel(record);
     await newRecord.save();
+
+    res.json(record);
 });
 
 
