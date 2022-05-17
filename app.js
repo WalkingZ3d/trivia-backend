@@ -4,10 +4,12 @@ const favicon = require('express-favicon');
 const mongoose = require("mongoose");
 const app = express();
 const RecordModel = require("./models/neweetRecord");
+const dotenv = require("dotenv");
+dotenv.config();
 
-mongoose.connect(
-    "mongodb+srv://groupe:wQGCUZ1GQaXMxq2O@cluster0.i0fbn.mongodb.net/Neweet?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.DATABASE_ACCESS, () => {
+    //console.log("Database connected!");
+});
 
 app.use(cors("*"));
 app.use(express.json());
