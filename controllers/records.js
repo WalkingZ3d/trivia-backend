@@ -13,7 +13,7 @@ async function showAllRecords(req, res) {
 // shows all winners:
 async function showAllWinners(req, res) {
   try {
-    const winners = await Record.find({"winner": "Dan"});
+    const winners = await Record.find({});
     res.json(winners);
   } catch (err) {
     console.log("pathing worked")
@@ -26,8 +26,8 @@ async function showRecordById(req, res) {
   try {
     const record = await Record.find({});
     res.json(record);
-  } catch (err) {
-    console.log(err);
+  } catch {
+    res.send("Player does not exist")
   }
 }
 
