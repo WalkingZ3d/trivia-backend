@@ -10,10 +10,10 @@ async function showAllRecords(req, res) {
   }
 }
 
-// shows all winners:
+// shows all winners and count how many times they have won:
 async function showAllWinners(req, res) {
   try {
-    const winners = await Record.find({});
+    const winners = await Record.aggregate([{$group: { _id: "$winner", totWins : {$sum: 1}}}]); // group them by using "winner" as key and count the instances
     res.json(winners);
   } catch (err) {
     console.log("pathing worked")
@@ -21,13 +21,14 @@ async function showAllWinners(req, res) {
   }
 }
 
-// shows game records by id:
+// shows game records of players name that are present in the game:
 async function showRecordById(req, res) {
   try {
-    const record = await Record.find({});
+    const parameter = req.params.id;
+    const record = await Record.find({parameter});
     res.json(record);
-  } catch {
-    res.send("Player does not exist")
+  } catch (err) {
+    res.send(err + "Player does not exist")
   }
 }
 
