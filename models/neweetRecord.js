@@ -42,10 +42,14 @@ const RecordSchema = new mongoose.Schema(
             turn_04: {},
         },
     },
-    { strict: false },
+    {
+        strict: false,
+        versionKey: false,
+    },
 );
 
-//put the whole schema non strict so whatever can be passed
+//strict false: puts the whole schema non strict so whatever can be passed
+//versioneKey false: prevents "__v" from being created
 
 const RecordModel = mongoose.model("neweetrecord", RecordSchema);
 module.exports = { RecordModel };
