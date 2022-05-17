@@ -9,6 +9,16 @@ async function getAll(req, res) {
   }
 }
 
+async function getByName() {
+  try {
+    const username = req.params.username;
+    const user = await Player.findById(username);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ error });
+  }
+}
+
 async function create(req, res) {
   try {
     const player = await Player.create(req.body);
@@ -46,4 +56,4 @@ async function remove(req, res) {
   }
 }
 
-module.exports = { getAll, create, show, update, remove };
+module.exports = { getAll, getByName, create, show, update, remove };
