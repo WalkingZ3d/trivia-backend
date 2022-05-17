@@ -10,21 +10,22 @@ async function showAllRecords(req, res) {
   }
 }
 
-// shows game records by id:
-async function showRecordById(req, res) {
+// shows all winners:
+async function showAllWinners(req, res) {
   try {
-    const record = await Record.findById({ _id: req.params.id });
-    res.json(record);
+    const winners = await Record.find({"winner": "Dan"});
+    res.json(winners);
   } catch (err) {
+    console.log("pathing worked")
     console.log(err);
   }
 }
 
-// shows all winners:
-async function showAllWinners(req, res) {
+// shows game records by id:
+async function showRecordById(req, res) {
   try {
-    const winners = await Record.find({}).select("winners");
-    res.json(winners);
+    const record = await Record.find({});
+    res.json(record);
   } catch (err) {
     console.log(err);
   }
