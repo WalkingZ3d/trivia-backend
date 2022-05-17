@@ -2,12 +2,8 @@ const express = require("express");
 const router = express.Router();
 const recordController = require("../controllers/records");
 
-router.route("/").get(recordController.showAllRecords);
-
-// router.route("/").get(playerController.getAll);
-// router.route("/").post(playerController.create);
-// router.route("/:id").get(playerController.show);
-// router.route("/:id").get(playerController.update);
-// router.route("/:id").get(playerController.remove);
+router.route("/").get(recordController.showAllRecords); // shows all game records
+router.route("/:id").get(recordController.showRecordById); // shows game records by id
+router.route("/winners").get(recordController.showAllWinners); // shows all winners
 
 module.exports = router;

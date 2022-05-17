@@ -51,5 +51,4 @@ const RecordSchema = new mongoose.Schema(
 //strict false: puts the whole schema non strict so whatever can be passed
 //versioneKey false: prevents "__v" from being created
 
-const RecordModel = mongoose.model("neweetrecord", RecordSchema);
-module.exports = { RecordModel };
+module.exports = mongoose.model("neweetrecord", RecordSchema);
