@@ -31,9 +31,7 @@ app.get("/", (req, res) => {
 2;
 
 const recordRoutes = require("./routes/records");
-const playerRoutes = require("./routes/players");
 app.use("/api/records", recordRoutes);
-app.use("/api/players", playerRoutes);
 
 // 404 page if user navigatesto non-existents endpoint
 app.use((req, res) => {

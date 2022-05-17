@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const recordsController = require("../controllers/records");
+const recordController = require("../controllers/records");
 
-router.route("/").get(recordsController.showAllRecords);
+router.route("/records").get(recordController.showAllRecords);
 
 module.exports = router;
