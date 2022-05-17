@@ -41,7 +41,8 @@ app.use('/api', rootRoute); // Routes
 
 //MONGODB API REQUEST
 app.get("/records", allRecords); //find all the records
-//app.get("/records/winner/:id", winnerRoutes) //find the record based on the winner
+//app.get("/records/winners, allWinners") //find the list of winners
+//app.get("/records/:id/wins", winnerRoutes) //find the record based on the winner
 //app.get("/record/:id", playerRoutes) //find all the record of the player
 
 //MONGODB CREATE NEW GAME RECORDS
