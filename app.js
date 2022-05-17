@@ -1,15 +1,34 @@
 const express = require("express");
-
 const app = express();
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const cors = require("cors");
 
-app.use(cors());
+dotenv.config();
+
+// DB Connection
+async function dbConnect() {
+  try {
+    await mongoose.connect(process.env.DATABASE_ACCESS, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Database connected!");
+  } catch (err) {
+    console.log("Database failed to connect");
+  }
+}
+
+dbConnect();
+
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Neweet Trivia API!");
 });
+2;
 
 const playerRoutes = require("./routes/players");
 app.use("/api/players", playerRoutes);
