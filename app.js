@@ -28,12 +28,13 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.send("Welcome to the Neweet Trivia API!");
 });
-2;
+
+app.set("view engine", "ejs");
 
 const recordRoutes = require("./routes/records");
-app.use("/api/records", recordRoutes);
+app.use("/records", recordRoutes);
 
-// 404 page if user navigatesto non-existents endpoint
+// 404 page if user navigates to non-existents end-point
 app.use((req, res) => {
   res.status(404).render("404");
 });
