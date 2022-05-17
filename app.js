@@ -27,9 +27,7 @@ app.set('view engine', 'ejs');
 app.use(favicon(__dirname + '/public/images/favicon.png'));
 
 app.get('/', (req, res) => {
-    res.json({
-        root_endpoint: "http://localhost:3001/",
-    })
+    res.send("Welcome to Neweet API!")
 })
 
 //app.get('*', checkUser); // Middleware that applies to every endpoint
