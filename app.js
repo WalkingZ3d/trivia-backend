@@ -34,7 +34,7 @@ app.set("view engine", "ejs");
 app.use(favicon(__dirname + "/public/images/favicon.png"));
 
 const recordRoutes = require("./routes/records");
-app.get("/records", recordRoutes);
+app.use("/records", recordRoutes);
 
 // 404 page if user navigates to non-existents end-point
 app.use((req, res) => {
