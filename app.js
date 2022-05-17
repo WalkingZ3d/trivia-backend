@@ -1,8 +1,9 @@
 const express = require("express");
-const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const favicon = require("express-favicon");
+const app = express();
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ async function dbConnect() {
 
 dbConnect();
 
-app.use(cors());
+app.use(cors("*"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,9 +31,10 @@ app.get("/", (req, res) => {
 });
 
 app.set("view engine", "ejs");
+app.use(favicon(__dirname + "/public/images/favicon.png"));
 
 const recordRoutes = require("./routes/records");
-app.use("/records", recordRoutes);
+app.get("/records", recordRoutes);
 
 // 404 page if user navigates to non-existents end-point
 app.use((req, res) => {
