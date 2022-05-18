@@ -1,8 +1,5 @@
 const mongoose = require("mongoose");
 
-//the schema is completely optional
-//this is here as essential information for a game
-
 const RecordSchema = new mongoose.Schema(
   {
     set_turns: {
