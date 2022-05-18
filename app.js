@@ -19,20 +19,20 @@ async function dbConnect() {
     console.log("Database failed to connect");
   }
 }
-
 dbConnect();
 
 app.use(cors("*"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.use(favicon(__dirname + "/public/images/favicon.png"));
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Neweet Trivia API!");
 });
 
-app.set("view engine", "ejs");
-app.use(favicon(__dirname + "/public/images/favicon.png"));
-
+// Routes for the records
 const recordRoutes = require("./routes/records");
 app.use("/records", recordRoutes);
 
