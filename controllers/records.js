@@ -66,7 +66,10 @@ async function showAllGamesById(req, res) {
   try {
     const player = req.params.id;
     const played_games = await Record.find({ players_list: { $elemMatch: { name: player } } });
-    res.json(played_games)
+    res.json({
+      "Player": player,
+      "Games": played_games
+    });
   } catch (err) {
     console.log(err);
   }
