@@ -10,27 +10,29 @@ async function showAllRecords(req, res) {
   }
 }
 
-// shows game records by id:
-async function showRecordById(req, res) {
-  try {
-    const record = await Record.findById({ _id: req.params.id });
-    res.json(record);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-// shows all winners:
+// shows all winners and count how many times they have won:
 async function showAllWinners(req, res) {
   try {
-    const winners = await Record.find({}).select("winners");
+    const winners = await Record.aggregate([{ $group: { _id: "$winner", totWins: { $sum: 1 } } }]); // group them by using "winner" as key and count the instances
     res.json(winners);
+  } catch (err) {
+    res.send(`Something went wrong, the the following error: ${err}`);
+    console.log(err);
+  }
+}
+
+// shows the games that the player is in:
+async function showRecordById(req, res) {
+  try {
+    const player = req.params.id;
+    const record = await Record.find({ "winner": player });
+    res.json({"The found results for the player": player, "this player has played these games": record})
   } catch (err) {
     console.log(err);
   }
 }
 
-//
+//try to make showRecordById case insensitive when possible
 
 // async function showWinners(req, res) {
 //   const winners = await Record.RecordModel.find({"winner": par});
