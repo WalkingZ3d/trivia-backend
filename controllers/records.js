@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const Record = require("../models/Record");
 
 // shows all the game records:
@@ -26,7 +27,7 @@ async function showRecordById(req, res) {
   try {
     const player = req.params.id;
     const record = await Record.find({ "winner": player });
-    res.json({"The found results for the player": player, "this player has played these games": record})
+    res.json({ "The found results for the player": player, "this player was winner in these games": record })
   } catch (err) {
     console.log(err);
   }
@@ -39,4 +40,25 @@ async function showRecordById(req, res) {
 //   res.json(winners);
 // }
 
-module.exports = { showAllRecords, showRecordById, showAllWinners };
+//show all the players and count how many games they have played
+async function allPlayers(req, res) {
+  try {
+    const players = await Record.find();
+    res.json(players)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+// show all the games that the player has played
+async function showAllGamesById(req, res) {
+  try {
+    const player = req.params.id;
+    const played_games = await Record.find();
+    res.json(record)
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = { showAllRecords, showRecordById, showAllWinners, allPlayers, showAllGamesById };
