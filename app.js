@@ -32,11 +32,11 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Neweet Trivia API!");
 });
 
-// Routes for the records
+// Routes for the game records
 const recordRoutes = require("./routes/records");
 app.use("/records", recordRoutes);
 
-// 404 page if user navigates to non-existents end-point
+// 404 page if user navigates to non-existent end-point
 app.use((req, res) => {
   res.status(404).render("404");
 });

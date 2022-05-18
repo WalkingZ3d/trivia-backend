@@ -1,7 +1,7 @@
 {
-  "name": "express-boiler-plate",
+  "name": "trivia-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend to the Neweet Trivia App",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -13,10 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/WalkingZ3d/trivia-backend.git"
   },
-  "keywords": [
-    "heroku"
-  ],
-  "author": "",
+  "keywords": ["heroku"],
+  "author": "Jianli Lin, Doreen Kamushinda, Dan Willis, Liberty Sprackling",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/WalkingZ3d/trivia-backend/issues"
