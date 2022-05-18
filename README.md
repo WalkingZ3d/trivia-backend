@@ -15,6 +15,7 @@ This repo specifically is the server that connects to the Mongo database.
 #### Installation
 
 Clone the repo on your local pc and run `npi i` to install all the dependencies.
+
 Once the installation is complete, run `npm run dev` and go on the designated URL to run it with nodemon.
 
 #### Usage
