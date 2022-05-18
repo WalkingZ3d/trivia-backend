@@ -10,6 +10,18 @@ async function showAllRecords(req, res) {
   }
 }
 
+// creates new records
+async function createRecord(req, res) {
+  try {
+    const record = req.body;
+    const newRecord = new Record(record);
+    await newRecord.save();
+    res.json(record);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 // shows all the winners and how many times they've won:
 async function showAllWinners(req, res) {
   try {
@@ -39,4 +51,9 @@ async function showRecordById(req, res) {
   }
 }
 
-module.exports = { showAllRecords, showRecordById, showAllWinners };
+module.exports = {
+  showAllRecords,
+  createRecord,
+  showRecordById,
+  showAllWinners,
+};
