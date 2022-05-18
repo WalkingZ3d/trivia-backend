@@ -51,9 +51,32 @@ async function showRecordById(req, res) {
   }
 }
 
+//show all the players and count how many games they have played
+async function allPlayers(req, res) {
+  try {
+    const players = await Record.aggregate([{ $unwind: "$players_list" }, { $group: { _id: "$players_list.name", totGames: { $sum: 1 } } }]);
+    res.json(players)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+// show all the games that the player has played
+async function showAllGamesById(req, res) {
+  try {
+    const player = req.params.id;
+    const played_games = await Record.find({ players_list: { $elemMatch: { name: player } } });
+    res.json(played_games)
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   showAllRecords,
   createRecord,
   showRecordById,
   showAllWinners,
+  allPlayers,
+  showAllGamesById
 };

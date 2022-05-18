@@ -6,5 +6,7 @@ router.route("/").get(recordController.showAllRecords); // shows all game record
 router.route("/create").post(recordController.createRecord); // creates new game record
 router.route("/winners").get(recordController.showAllWinners); // shows all winners
 router.route("/winners/:id").get(recordController.showRecordById); // shows game records by id
+router.route("/players").get(recordController.allPlayers);
+router.route("/players/:id").get(recordController.showAllGamesById); // shows all games by a player
 
 module.exports = router;
