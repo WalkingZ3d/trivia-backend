@@ -41,3 +41,4 @@ All the available routes for the API are
 - Mongoose
 - Netlify
 - Heroku
+- Thunder Client
