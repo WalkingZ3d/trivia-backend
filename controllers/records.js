@@ -41,11 +41,8 @@ async function showAllWinners(req, res) {
 async function showRecordById(req, res) {
   try {
     const player = req.params.id;
-    const record = await Record.find({ winner: player });
-    res.json({
-      "The found results for the player": player,
-      "this player has played these games": record,
-    });
+    const record = await Record.find({ winner: {"$regex": player, "$options": "i"}});
+    res.json(record);
   } catch (err) {
     console.log(err);
   }
@@ -65,11 +62,8 @@ async function allPlayers(req, res) {
 async function showAllGamesById(req, res) {
   try {
     const player = req.params.id;
-    const played_games = await Record.find({ players_list: { $elemMatch: { name: player } } });
-    res.json({
-      "Player": player,
-      "Games": played_games
-    });
+    const played_games = await Record.find({ players_list: { $elemMatch: { name: {"$regex": player, "$options": "i"} } } });
+    res.json(played_games);
   } catch (err) {
     console.log(err);
   }
